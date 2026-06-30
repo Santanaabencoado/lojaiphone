@@ -1,908 +1,674 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>iPhone 17 Pro Max — Loja Exclusiva</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+  <title>JDImports — iPhones Originais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --black:#0A0A0A;--dark:#141414;--card:#181818;--card2:#1E1E1E;
+      --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+      --orange:#FF6B00;--orange2:#FF8C38;--oglow:rgba(255,107,0,0.15);
+      --white:#F5F5F7;--gray:#8E8E93;--gray2:#636366;
+      --green:#30D158;--wa:#25D366;
+      --r:20px;--rs:12px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',-apple-system,sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-    :root {
-      --black: #0A0A0A;
-      --dark: #141414;
-      --card: #1A1A1A;
-      --border: rgba(255,255,255,0.08);
-      --orange: #FF6B00;
-      --orange-light: #FF8C38;
-      --orange-glow: rgba(255,107,0,0.18);
-      --white: #F5F5F7;
-      --gray: #8E8E93;
-      --gray-light: #636366;
-      --blue-color: #1B4F8A;
-      --blue-display: #4A90D9;
-      --white-color: #E8E4DC;
-      --radius: 20px;
-      --radius-sm: 12px;
-      --shadow: 0 24px 64px rgba(0,0,0,0.6);
-    }
+    /* ─── NAV ─── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(8,8,8,0.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 28px}
+    .nav-brand{display:flex;align-items:center;gap:10px}
+    .nav-logo-text{font-size:20px;font-weight:900;letter-spacing:-1px;background:linear-gradient(135deg,#fff 40%,var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-logo-text span{-webkit-text-fill-color:var(--orange)}
+    .nav-badge{background:var(--orange);color:#fff;font-size:9px;font-weight:800;letter-spacing:.8px;padding:3px 8px;border-radius:20px;text-transform:uppercase;-webkit-text-fill-color:#fff}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .nav-btn{background:none;border:none;color:var(--gray);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:color .2s;padding:6px 0}
+    .nav-btn:hover{color:var(--white)}
+    .nav-wa{background:var(--wa);color:#fff;font-size:12px;font-weight:700;padding:8px 16px;border-radius:22px;cursor:pointer;border:none;font-family:inherit;display:flex;align-items:center;gap:6px;transition:all .2s}
+    .nav-wa:hover{background:#20BD5A;transform:scale(1.04)}
+    .nav-wa svg{width:14px;height:14px;fill:#fff}
 
-    html { scroll-behavior: smooth; }
+    /* ─── HERO ─── */
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px 24px 80px;position:relative;overflow:hidden}
+    .hero-glow{position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(255,107,0,0.09) 0%,transparent 68%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange);margin-bottom:24px;background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.2);padding:6px 16px;border-radius:20px}
+    .hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+    .hero-title{font-size:clamp(46px,9vw,100px);font-weight:900;letter-spacing:-4px;line-height:.9;margin-bottom:22px}
+    .hero-title .accent{color:var(--orange)}
+    .hero-title .thin{font-weight:300;color:var(--gray)}
+    .hero-sub{font-size:clamp(15px,2vw,18px);font-weight:300;color:var(--gray);max-width:480px;line-height:1.7;margin-bottom:52px}
+    .hero-sub strong{color:var(--white);font-weight:600}
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-      background: var(--black);
-      color: var(--white);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+    /* Pricing cards no hero */
+    .hero-cards{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:52px}
+    .hcard{background:var(--card);border:1px solid var(--border2);border-radius:18px;padding:22px 28px;min-width:220px;text-align:left;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+    .hcard::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,107,0,.06),transparent);opacity:0;transition:opacity .3s}
+    .hcard:hover::before{opacity:1}
+    .hcard:hover{border-color:rgba(255,107,0,.4);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+    .hcard-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+    .hcard-name{font-size:22px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
+    .hcard-from{font-size:13px;color:var(--gray);margin-bottom:14px}
+    .hcard-from strong{font-size:17px;color:var(--white);font-weight:700}
+    .hcard-cta{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--orange)}
+    .hcard-cta svg{width:14px;height:14px;fill:var(--orange);transition:transform .2s}
+    .hcard:hover .hcard-cta svg{transform:translateX(3px)}
+    .hcard.featured{border-color:rgba(255,107,0,.3);background:linear-gradient(135deg,#1E1005,#181818)}
+    .hcard-badge{position:absolute;top:14px;right:14px;background:var(--orange);color:#fff;font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:4px 9px;border-radius:10px}
 
-    /* ── NAVBAR ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(10,10,10,0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 24px;
-      height: 60px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 15px; font-weight: 700; letter-spacing: -0.3px;
-    }
-    .nav-logo svg { width: 22px; height: 22px; fill: var(--white); }
-    .nav-badge {
-      background: var(--orange); color: #fff;
-      font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
-      padding: 3px 8px; border-radius: 20px; text-transform: uppercase;
-    }
-    .nav-contact {
-      font-size: 13px; color: var(--gray); cursor: pointer;
-      transition: color 0.2s;
-    }
-    .nav-contact:hover { color: var(--orange); }
+    /* ─── SEÇÃO CATÁLOGO ─── */
+    .catalog-section{padding:80px 24px;max-width:1200px;margin:0 auto}
+    .sec-header{margin-bottom:40px}
+    .sec-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+    .sec-title{font-size:clamp(28px,5vw,44px);font-weight:800;letter-spacing:-1.5px;line-height:1.05;margin-bottom:8px}
+    .sec-sub{font-size:15px;color:var(--gray);line-height:1.6;max-width:560px}
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center;
-      padding: 100px 24px 60px;
-      position: relative; overflow: hidden;
-    }
-    .hero-glow {
-      position: absolute;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(255,107,0,0.12) 0%, transparent 70%);
-      top: 50%; left: 50%; transform: translate(-50%,-50%);
-      pointer-events: none;
-    }
-    .hero-eyebrow {
-      font-size: 12px; font-weight: 600; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--orange);
-      margin-bottom: 20px;
-    }
-    .hero-title {
-      font-size: clamp(42px, 8vw, 88px);
-      font-weight: 800; letter-spacing: -3px; line-height: 0.95;
-      margin-bottom: 16px;
-    }
-    .hero-title span { color: var(--orange); }
-    .hero-sub {
-      font-size: clamp(16px, 2.5vw, 20px);
-      font-weight: 300; color: var(--gray); max-width: 480px;
-      line-height: 1.6; margin-bottom: 48px;
-    }
-    .hero-cta {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--orange); color: #fff;
-      font-size: 15px; font-weight: 600;
-      padding: 14px 28px; border-radius: 50px;
-      text-decoration: none; transition: all 0.25s;
-      box-shadow: 0 8px 32px rgba(255,107,0,0.35);
-    }
-    .hero-cta:hover {
-      background: var(--orange-light);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(255,107,0,0.45);
-    }
-    .hero-cta svg { width: 18px; height: 18px; fill: #fff; }
-    .hero-scroll {
-      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      color: var(--gray-light); font-size: 11px; letter-spacing: 1.5px;
-      text-transform: uppercase; animation: bounce 2.5s infinite;
-    }
-    .hero-scroll svg { width: 16px; height: 16px; fill: var(--gray-light); }
-    @keyframes bounce {
-      0%,100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
-    }
+    /* Tabs de linha */
+    .line-tabs{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap}
+    .line-tab{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:12px 22px;cursor:pointer;transition:all .22s;font-size:14px;font-weight:600;color:var(--gray);font-family:inherit}
+    .line-tab:hover{border-color:var(--border2);color:var(--white);background:var(--card2)}
+    .line-tab.active{border-color:var(--orange);background:rgba(255,107,0,.1);color:var(--white)}
 
-    /* ── SECTION ── */
-    section { padding: 80px 24px; max-width: 1200px; margin: 0 auto; }
-    .section-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; color: var(--orange);
-      margin-bottom: 12px;
-    }
-    .section-title {
-      font-size: clamp(28px, 5vw, 48px);
-      font-weight: 800; letter-spacing: -1.5px; line-height: 1.05;
-      margin-bottom: 8px;
-    }
-    .section-sub {
-      font-size: 16px; color: var(--gray); font-weight: 400;
-      margin-bottom: 48px; max-width: 560px; line-height: 1.6;
-    }
+    /* Grid de modelos */
+    .models-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .model-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all .28s;position:relative}
+    .model-card:hover{border-color:rgba(255,107,0,.35);transform:translateY(-5px);box-shadow:0 24px 64px rgba(0,0,0,.6)}
+    .model-card.selected{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange),0 24px 64px rgba(255,107,0,.15)}
+    .model-img-wrap{background:linear-gradient(135deg,#141414,#0D0D0D);padding:0;display:flex;align-items:center;justify-content:center;height:220px;position:relative;overflow:hidden}
+    .model-img-wrap::before{content:'';position:absolute;width:160px;height:160px;background:radial-gradient(circle,rgba(255,107,0,.1),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%)}
+    .model-img{width:auto;height:180px;max-width:90%;object-fit:contain;position:relative;z-index:1;transition:transform .4s cubic-bezier(.34,1.56,.64,1);filter:drop-shadow(0 16px 32px rgba(0,0,0,.6))}
+    .model-card:hover .model-img{transform:scale(1.06) translateY(-4px)}
+    .model-info{padding:18px 18px 20px}
+    .model-name{font-size:17px;font-weight:800;letter-spacing:-.4px;margin-bottom:4px}
+    .model-desc{font-size:12px;color:var(--gray);margin-bottom:14px;line-height:1.5}
+    .model-colors-preview{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+    .dot-preview{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.15);flex-shrink:0}
+    .model-select-btn{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border2);border-radius:10px;padding:10px;font-size:13px;font-weight:600;color:var(--white);cursor:pointer;font-family:inherit;transition:all .2s}
+    .model-select-btn:hover{background:rgba(255,107,0,.12);border-color:var(--orange);color:var(--orange)}
+    .model-card.selected .model-select-btn{background:var(--orange);border-color:var(--orange);color:#fff}
 
-    /* ── PRODUCT CONFIGURATOR ── */
-    .configurator {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      padding: 0;
-    }
+    /* ─── CONFIGURADOR ─── */
+    .configurator-wrap{max-width:1200px;margin:0 auto;padding:0 24px 80px}
+    .configurator{background:var(--card);border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6);display:none}
+    .configurator.visible{display:block;animation:fadeUp .4s ease}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .config-layout{display:grid;grid-template-columns:1fr 1fr}
 
-    .config-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 600px;
-    }
+    /* Painel esquerdo imagem */
+    .cfg-img-panel{background:linear-gradient(160deg,#111,#090909);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 32px;position:relative;overflow:hidden;min-height:520px}
+    .cfg-img-glow{position:absolute;width:280px;height:280px;border-radius:50%;filter:blur(70px);opacity:.3;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--orange);transition:background .5s}
+    .cfg-img{max-width:260px;max-height:320px;object-fit:contain;position:relative;z-index:1;filter:drop-shadow(0 28px 56px rgba(0,0,0,.7));transition:all .5s cubic-bezier(.34,1.56,.64,1)}
+    .cfg-img:hover{transform:scale(1.04) translateY(-6px)}
+    .cfg-model-label{position:absolute;bottom:22px;font-size:12px;font-weight:600;color:var(--gray);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:5px 14px;border-radius:20px;z-index:1}
 
-    /* Image Panel */
-    .config-image-panel {
-      background: linear-gradient(135deg, #1A1A1A 0%, #0F0F0F 100%);
-      display: flex; align-items: center; justify-content: center;
-      padding: 48px 32px;
-      position: relative; overflow: hidden;
-    }
-    .config-image-panel::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 40% 50%, var(--orange-glow) 0%, transparent 65%);
-      transition: opacity 0.6s;
-    }
-    .phone-image-container {
-      position: relative; z-index: 1;
-      width: 100%; max-width: 260px;
-      aspect-ratio: 1;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .phone-image {
-      width: 100%; height: 100%; object-fit: contain;
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      filter: drop-shadow(0 32px 64px rgba(0,0,0,0.6));
-    }
-    .phone-image:hover {
-      transform: scale(1.04) translateY(-6px);
-    }
-    .color-badge-display {
-      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(10px);
-      padding: 6px 16px; border-radius: 20px;
-      font-size: 12px; font-weight: 500; color: var(--gray);
-      white-space: nowrap;
-      transition: all 0.3s;
-    }
+    /* Painel direito config */
+    .cfg-panel{padding:40px 36px;display:flex;flex-direction:column;gap:28px;overflow-y:auto;max-height:700px}
+    .cfg-header{border-bottom:1px solid var(--border);padding-bottom:22px}
+    .cfg-header h2{font-size:26px;font-weight:800;letter-spacing:-.8px;margin-bottom:6px}
+    .cfg-header p{font-size:12px;color:var(--gray);line-height:1.5}
+    .cfg-line-badge{display:inline-block;background:rgba(255,107,0,.12);border:1px solid rgba(255,107,0,.25);color:var(--orange);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:8px;margin-bottom:10px}
 
-    /* Config Panel */
-    .config-panel {
-      padding: 40px 36px;
-      display: flex; flex-direction: column; gap: 32px;
-      overflow-y: auto;
-    }
+    .cfg-group{}
+    .cfg-group > label{display:block;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray2);margin-bottom:12px}
 
-    .config-header { border-bottom: 1px solid var(--border); padding-bottom: 24px; }
-    .config-header h2 {
-      font-size: 26px; font-weight: 800; letter-spacing: -0.8px;
-      margin-bottom: 6px;
-    }
-    .config-header p { font-size: 13px; color: var(--gray); line-height: 1.5; }
+    /* Seletor de cores */
+    .color-grid{display:flex;flex-wrap:wrap;gap:8px}
+    .color-opt{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:10px;padding:9px 14px;cursor:pointer;transition:all .2s;font-size:13px;font-weight:500;color:var(--white);font-family:inherit;flex:1;min-width:120px}
+    .color-opt:hover{background:rgba(255,255,255,.07);border-color:var(--border2)}
+    .color-opt.active{border-color:var(--orange);background:rgba(255,107,0,.1)}
+    .cdot{width:15px;height:15px;border-radius:50%;flex-shrink:0;border:2px solid rgba(255,255,255,.2)}
 
-    .config-group label {
-      display: block; font-size: 11px; font-weight: 700;
-      letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--gray); margin-bottom: 14px;
-    }
+    /* Caixa "Valor a Combinar" */
+    .price-box{background:linear-gradient(135deg,rgba(255,107,0,.08),rgba(255,107,0,.03));border:1px solid rgba(255,107,0,.2);border-radius:var(--rs);padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .price-box-left{}
+    .price-box-tag{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+    .price-box-val{font-size:22px;font-weight:800;letter-spacing:-.5px;color:var(--white)}
+    .price-box-sub{font-size:11px;color:var(--gray);margin-top:4px;line-height:1.4}
+    .price-box-icon{width:42px;height:42px;background:rgba(255,107,0,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .price-box-icon svg{width:20px;height:20px;fill:var(--orange)}
 
-    /* Color selector */
-    .color-options {
-      display: flex; gap: 12px; flex-wrap: wrap;
-    }
-    .color-btn {
-      display: flex; align-items: center; gap: 10px;
-      background: rgba(255,255,255,0.04);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 10px 16px;
-      cursor: pointer; transition: all 0.2s;
-      font-size: 14px; font-weight: 500; color: var(--white);
-      flex: 1; min-width: 120px;
-    }
-    .color-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
-    .color-btn.active { border-color: var(--orange); background: rgba(255,107,0,0.1); }
-    .color-dot {
-      width: 18px; height: 18px; border-radius: 50%;
-      flex-shrink: 0; border: 2px solid rgba(255,255,255,0.15);
-    }
-    .dot-laranja { background: linear-gradient(135deg, #FF6B00, #E55A00); }
-    .dot-azul { background: linear-gradient(135deg, #1B4F8A, #0D3A6F); border-color: #4A90D9; }
-    .dot-branco { background: linear-gradient(135deg, #E8E4DC, #D4CFC7); border-color: #aaa; }
+    /* Botão WhatsApp */
+    .wa-cta{display:flex;align-items:center;justify-content:center;gap:12px;background:var(--wa);color:#fff;font-size:16px;font-weight:700;padding:17px 22px;border-radius:14px;cursor:pointer;border:none;width:100%;transition:all .25s;box-shadow:0 8px 32px rgba(37,211,102,.22);font-family:inherit;letter-spacing:-.2px}
+    .wa-cta:hover{background:#20BD5A;transform:translateY(-2px);box-shadow:0 14px 44px rgba(37,211,102,.35)}
+    .wa-cta:active{transform:translateY(0)}
+    .wa-cta svg{width:22px;height:22px;fill:#fff;flex-shrink:0}
+    .wa-cta:disabled{opacity:.4;cursor:not-allowed;transform:none}
+    .cfg-note{font-size:11px;color:var(--gray2);text-align:center;line-height:1.6}
 
-    /* Storage selector */
-    .storage-options {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-    }
-    .storage-btn {
-      background: rgba(255,255,255,0.04);
-      border: 1.5px solid var(--border);
-      border-radius: 12px;
-      padding: 14px 16px;
-      cursor: pointer; transition: all 0.2s;
-      text-align: left;
-    }
-    .storage-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
-    .storage-btn.active { border-color: var(--orange); background: rgba(255,107,0,0.1); }
-    .storage-btn.disabled { opacity: 0.3; cursor: not-allowed; pointer-events: none; }
-    .storage-gb {
-      font-size: 18px; font-weight: 800; letter-spacing: -0.5px;
-      margin-bottom: 4px;
-    }
-    .storage-price {
-      font-size: 13px; color: var(--gray); font-weight: 400;
-    }
-    .storage-price strong { color: var(--white); font-weight: 600; }
+    /* ─── POR QUE JIMPORTS ─── */
+    .why-section{background:var(--dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 24px}
+    .why-inner{max-width:1160px;margin:0 auto}
+    .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:44px}
+    .why-card{background:var(--card);border:1px solid var(--border);border-radius:var(--rs);padding:24px 20px;transition:all .3s}
+    .why-card:hover{border-color:rgba(255,107,0,.25);transform:translateY(-3px)}
+    .why-icon{width:42px;height:42px;background:var(--oglow);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+    .why-icon svg{width:20px;height:20px;stroke:var(--orange);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+    .why-t{font-size:14px;font-weight:700;margin-bottom:5px}
+    .why-d{font-size:12px;color:var(--gray);line-height:1.55}
 
-    /* Price display */
-    .price-display {
-      background: rgba(255,107,0,0.08);
-      border: 1px solid rgba(255,107,0,0.2);
-      border-radius: var(--radius-sm);
-      padding: 20px 24px;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .price-label { font-size: 12px; color: var(--gray); font-weight: 500; letter-spacing: 0.5px; }
-    .price-value {
-      font-size: 30px; font-weight: 800; letter-spacing: -1px;
-      color: var(--orange);
-    }
-    .price-installment {
-      font-size: 12px; color: var(--gray); margin-top: 2px;
-    }
+    /* ─── SOCIAL PROOF ─── */
+    .proof-bar{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 24px;overflow:hidden}
+    .proof-track{display:flex;gap:48px;align-items:center;animation:marquee 22s linear infinite;white-space:nowrap}
+    .proof-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray);flex-shrink:0}
+    .proof-item svg{width:14px;height:14px;fill:var(--orange)}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-    /* WhatsApp button */
-    .whatsapp-btn {
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      background: #25D366;
-      color: #fff; font-size: 16px; font-weight: 700;
-      padding: 17px 24px; border-radius: 14px;
-      cursor: pointer; border: none; width: 100%;
-      transition: all 0.25s;
-      box-shadow: 0 8px 32px rgba(37,211,102,0.25);
-      letter-spacing: -0.2px;
-    }
-    .whatsapp-btn:hover {
-      background: #20BD5A;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(37,211,102,0.35);
-    }
-    .whatsapp-btn:active { transform: translateY(0); }
-    .whatsapp-btn svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+    /* ─── FOOTER ─── */
+    footer{border-top:1px solid var(--border);padding:40px 24px;text-align:center;color:var(--gray2);font-size:13px;line-height:2}
+    footer a{color:var(--orange);text-decoration:none}
+    .footer-brand{font-size:22px;font-weight:900;letter-spacing:-1px;margin-bottom:8px;background:linear-gradient(135deg,#fff 40%,var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:inline-block}
 
-    .config-disclaimer {
-      font-size: 12px; color: var(--gray-light); text-align: center; line-height: 1.5;
-    }
+    /* ─── FAB ─── */
+    .fab{position:fixed;bottom:22px;right:22px;z-index:300;width:56px;height:56px;background:var(--wa);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 32px rgba(37,211,102,.45);cursor:pointer;transition:all .25s;text-decoration:none;animation:fabp 3s infinite}
+    .fab:hover{transform:scale(1.1)}
+    .fab svg{width:28px;height:28px;fill:#fff}
+    @keyframes fabp{0%,100%{box-shadow:0 8px 32px rgba(37,211,102,.45)}50%{box-shadow:0 8px 32px rgba(37,211,102,.45),0 0 0 10px rgba(37,211,102,.07)}}
 
-    /* ── SPECS ── */
-    .specs-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-    }
-    .spec-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 24px 20px;
-      transition: all 0.3s;
-    }
-    .spec-card:hover {
-      border-color: rgba(255,107,0,0.3);
-      transform: translateY(-3px);
-    }
-    .spec-icon {
-      width: 40px; height: 40px;
-      background: var(--orange-glow);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 14px;
-    }
-    .spec-icon svg { width: 20px; height: 20px; fill: var(--orange); }
-    .spec-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
-    .spec-desc { font-size: 12px; color: var(--gray); line-height: 1.5; }
+    /* ─── TOAST ─── */
+    .toast{position:fixed;top:78px;left:50%;transform:translateX(-50%) translateY(-16px);background:var(--wa);color:#fff;font-size:13px;font-weight:600;padding:11px 24px;border-radius:50px;opacity:0;pointer-events:none;transition:all .28s;z-index:400;white-space:nowrap}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-    /* ── GALLERY ── */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 12px;
-    }
-    .gallery-item {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      aspect-ratio: 1;
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-    .gallery-item:hover {
-      border-color: rgba(255,107,0,0.3);
-      transform: scale(1.02);
-    }
-    .gallery-item img {
-      width: 100%; height: 100%; object-fit: contain;
-      transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .gallery-item:hover img { transform: scale(1.08); }
+    /* ─── DIVIDER ─── */
+    hr{border:none;border-top:1px solid var(--border)}
 
-    /* ── COLORS SECTION ── */
-    .colors-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 16px;
-    }
-    .color-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 24px 20px;
-      text-align: center;
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-    .color-card:hover { transform: translateY(-4px); }
-    .color-card.active-card { border-color: var(--orange); }
-    .color-swatch {
-      width: 48px; height: 48px; border-radius: 50%;
-      margin: 0 auto 14px;
-      border: 3px solid rgba(255,255,255,0.1);
-    }
-    .swatch-laranja { background: linear-gradient(135deg, #FF6B00, #E55A00); box-shadow: 0 8px 24px rgba(255,107,0,0.4); }
-    .swatch-azul { background: linear-gradient(135deg, #1B4F8A, #0D3A6F); box-shadow: 0 8px 24px rgba(27,79,138,0.4); }
-    .swatch-branco { background: linear-gradient(135deg, #E8E4DC, #D4CFC7); border-color: rgba(255,255,255,0.3); box-shadow: 0 8px 24px rgba(200,200,200,0.15); }
-    .color-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-    .color-tagline { font-size: 12px; color: var(--gray); }
+    /* ─── SCROLL REVEAL ─── */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .55s,transform .55s}
+    .reveal.in{opacity:1;transform:translateY(0)}
 
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 24px;
-      text-align: center;
-      color: var(--gray-light);
-      font-size: 13px; line-height: 1.8;
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:820px){
+      .config-layout{grid-template-columns:1fr}
+      .cfg-img-panel{min-height:260px;padding:32px 24px 20px}
+      .cfg-img{max-width:180px;max-height:220px}
+      .cfg-panel{padding:28px 22px;gap:22px;max-height:none}
+      .models-grid{grid-template-columns:repeat(2,1fr)}
+      .hero-cards{flex-direction:column;align-items:center}
+      .hcard{min-width:unset;width:100%;max-width:320px}
     }
-    footer a { color: var(--orange); text-decoration: none; }
-
-    /* ── FLOATING WHATSAPP ── */
-    .fab {
-      position: fixed; bottom: 24px; right: 24px; z-index: 200;
-      width: 56px; height: 56px;
-      background: #25D366;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 32px rgba(37,211,102,0.4);
-      cursor: pointer; transition: all 0.25s;
-      text-decoration: none;
-      animation: fabPulse 3s infinite;
+    @media(max-width:520px){
+      .models-grid{grid-template-columns:1fr}
+      nav{padding:0 16px}
+      .nav-btn{display:none}
+      .hero-title{letter-spacing:-2.5px}
+      .catalog-section{padding:60px 16px}
     }
-    .fab:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(37,211,102,0.5); }
-    .fab svg { width: 28px; height: 28px; fill: #fff; }
-    @keyframes fabPulse {
-      0%,100% { box-shadow: 0 8px 32px rgba(37,211,102,0.4); }
-      50% { box-shadow: 0 8px 32px rgba(37,211,102,0.4), 0 0 0 10px rgba(37,211,102,0.08); }
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      border: none; border-top: 1px solid var(--border);
-      margin: 0;
-    }
-
-    /* ── ALERT TOAST ── */
-    .toast {
-      position: fixed; top: 80px; left: 50%; transform: translateX(-50%) translateY(-20px);
-      background: #25D366; color: #fff;
-      font-size: 14px; font-weight: 600;
-      padding: 12px 24px; border-radius: 50px;
-      opacity: 0; pointer-events: none;
-      transition: all 0.3s; z-index: 300;
-      white-space: nowrap;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .config-layout { grid-template-columns: 1fr; }
-      .config-image-panel { min-height: 300px; padding: 32px 24px 24px; }
-      .phone-image-container { max-width: 180px; }
-      .config-panel { padding: 28px 24px; gap: 24px; }
-      .storage-options { grid-template-columns: 1fr 1fr; }
-      .color-btn { min-width: 100px; }
-      .price-value { font-size: 24px; }
-      .hero { padding: 90px 20px 80px; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .specs-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 480px) {
-      .color-options { flex-direction: column; }
-      .color-btn { min-width: unset; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; }
-    }
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
   </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- NAV -->
 <nav>
-  <div class="nav-logo">
-    <svg viewBox="0 0 814 1000" xmlns="http://www.w3.org/2000/svg">
-      <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-43.4-150.3-109.1C77 440.8 49.3 249.8 105 155.1c27.1-47.2 77.5-77 131.5-77 67.9 0 110.9 43.4 165.4 43.4 52.7 0 85.5-43.4 165.4-43.4 50.5 0 93.7 24.3 127.5 63.3zm-194 -153.6c-25.5 28.1-75.4 49.2-116.6 49.2-1.1 0-2.2 0-3.2-.1-3.4-44.9 12.5-89.7 38.3-121 25.5-30.7 73.8-53.3 113.2-55 2.1 47.1-14 92.8-31.7 126.9z"/>
-    </svg>
-    iPhone 17 Pro Max
-    <span class="nav-badge">Novo</span>
+  <div class="nav-brand">
+    <div class="nav-logo-text"><span>JD</span>Imports</div>
+    <span class="nav-badge">iPhones</span>
   </div>
-  <span class="nav-contact" onclick="openWhatsApp('Olá! Tenho interesse no iPhone 17 Pro Max. Pode me ajudar?')">
-    Falar no WhatsApp
-  </span>
+  <div class="nav-right">
+    <button class="nav-btn" onclick="scrollTo('catalogo')">Catálogo</button>
+    <button class="nav-btn" onclick="scrollTo('porque')">Por que nós</button>
+    <button class="nav-wa" onclick="openWA('Olá! Vi o catálogo da JDImports e tenho interesse em saber mais sobre os iPhones disponíveis.')">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Falar agora
+    </button>
+  </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-glow"></div>
-  <div class="hero-eyebrow">Acabou de Chegar</div>
-  <h1 class="hero-title">iPhone 17<br/><span>Pro Max</span></h1>
-  <p class="hero-sub">O iPhone mais avançado já criado. Design em titânio, câmera pro de 48MP e o chip A19 Pro.</p>
-  <a class="hero-cta" href="#configurador">
-    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-    Escolha o seu
-  </a>
-  <div class="hero-scroll">
-    <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-    Explorar
+  <div class="hero-eyebrow">Estoque disponível agora</div>
+  <h1 class="hero-title">
+    iPhones<br/>
+    <span class="accent">Originais</span><br/>
+    <span class="thin">com garantia</span>
+  </h1>
+  <p class="hero-sub">Modelos do <strong>iPhone 14 ao 17</strong>, linha padrão e Pro Max. Preço justo, entrega rápida, atendimento real.</p>
+  <div class="hero-cards">
+    <div class="hcard featured reveal" onclick="setLineAndScroll('promax')">
+      <span class="hcard-badge">🔥 Top</span>
+      <div class="hcard-tag">Linha Pro Max</div>
+      <div class="hcard-name">iPhone Pro Max</div>
+      <div class="hcard-from">A partir de <strong>R$ 4.500</strong></div>
+      <div class="hcard-cta">
+        Ver modelos disponíveis
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </div>
+    <div class="hcard reveal" onclick="setLineAndScroll('normal')">
+      <div class="hcard-tag">Linha Padrão</div>
+      <div class="hcard-name">iPhone Standard</div>
+      <div class="hcard-from">A partir de <strong>R$ 2.500</strong></div>
+      <div class="hcard-cta">
+        Ver modelos disponíveis
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </div>
+    </div>
   </div>
 </div>
 
-<hr class="divider" />
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-track" id="proofTrack">
+    <span class="proof-item"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Atendimento personalizado</span>
+    <span class="proof-item"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>iPhones 100% originais</span>
+    <span class="proof-item"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Negociação direta no WhatsApp</span>
+    <span class="proof-item"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Parcelamento disponível</span>
+    <span class="proof-item"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Entrega para todo o Brasil</span>
+    <!-- duplicado para loop -->
+    <span class="proof-item"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Atendimento personalizado</span>
+    <span class="proof-item"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>iPhones 100% originais</span>
+    <span class="proof-item"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Negociação direta no WhatsApp</span>
+    <span class="proof-item"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Parcelamento disponível</span>
+    <span class="proof-item"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Entrega para todo o Brasil</span>
+  </div>
+</div>
+
+<!-- CATÁLOGO -->
+<section id="catalogo">
+  <div class="catalog-section">
+    <div class="sec-header reveal">
+      <div class="sec-label">Catálogo</div>
+      <h2 class="sec-title" id="catalogTitle">Escolha sua linha</h2>
+      <p class="sec-sub" id="catalogSub">Selecione abaixo se prefere a linha Pro Max ou a linha padrão.</p>
+    </div>
+
+    <div class="line-tabs">
+      <button class="line-tab" id="tab-promax" onclick="setLine('promax')">
+        🏆 Linha Pro Max — <span style="color:var(--orange);font-weight:700">a partir de R$ 4.500</span>
+      </button>
+      <button class="line-tab" id="tab-normal" onclick="setLine('normal')">
+        📱 Linha Padrão — <span style="color:var(--orange);font-weight:700">a partir de R$ 2.500</span>
+      </button>
+    </div>
+
+    <div class="models-grid" id="modelsGrid">
+      <!-- injetado via JS -->
+    </div>
+  </div>
+</section>
 
 <!-- CONFIGURADOR -->
-<section id="configurador" style="padding-top:80px; padding-bottom:80px; max-width:1100px; margin:0 auto; padding-left:24px; padding-right:24px;">
-  <div class="section-label">Configure o seu</div>
-  <h2 class="section-title">Escolha sua versão</h2>
-  <p class="section-sub">Selecione a cor e o armazenamento ideal para você. Fale direto no WhatsApp para finalizar o pedido.</p>
-
-  <div class="configurator">
+<div class="configurator-wrap">
+  <div class="configurator" id="configurator">
     <div class="config-layout">
 
-      <!-- IMAGE PANEL -->
-      <div class="config-image-panel">
-        <div class="phone-image-container">
-          <img class="phone-image" id="phone-img" src="" alt="iPhone 17 Pro Max" onerror="this.style.display='none'" />
-          <!-- SVG placeholder quando não há imagem carregada externamente -->
-          <svg id="phone-placeholder" viewBox="0 0 200 380" xmlns="http://www.w3.org/2000/svg" style="width:70%;opacity:0.8;">
-            <!-- Corpo do iPhone -->
-            <rect x="20" y="10" width="160" height="360" rx="26" ry="26" fill="#1a1a1a" stroke="rgba(255,107,0,0.4)" stroke-width="1.5"/>
-            <!-- Tela -->
-            <rect x="30" y="22" width="140" height="310" rx="20" ry="20" fill="#0a0a0a"/>
-            <!-- Câmera island -->
-            <rect x="70" y="28" width="60" height="14" rx="7" fill="#000"/>
-            <!-- Câmeras traseiras (visão conceitual) -->
-            <circle cx="68" cy="80" r="18" fill="#111" stroke="rgba(255,107,0,0.3)" stroke-width="1"/>
-            <circle cx="68" cy="80" r="12" fill="#000"/>
-            <circle cx="68" cy="80" r="5" fill="#0a0a0a" stroke="#333" stroke-width="1"/>
-            <circle cx="68" cy="118" r="18" fill="#111" stroke="rgba(255,107,0,0.3)" stroke-width="1"/>
-            <circle cx="68" cy="118" r="12" fill="#000"/>
-            <circle cx="68" cy="118" r="5" fill="#0a0a0a" stroke="#333" stroke-width="1"/>
-            <circle cx="102" cy="99" r="18" fill="#111" stroke="rgba(255,107,0,0.3)" stroke-width="1"/>
-            <circle cx="102" cy="99" r="12" fill="#000"/>
-            <circle cx="102" cy="99" r="5" fill="#0a0a0a" stroke="#333" stroke-width="1"/>
-            <!-- Logo Apple -->
-            <text x="100" y="260" font-size="28" text-anchor="middle" fill="rgba(255,255,255,0.12)" font-family="sans-serif"></text>
-            <!-- Botão lado -->
-            <rect x="17" y="140" width="3" height="40" rx="2" fill="rgba(255,107,0,0.5)"/>
-            <!-- Brilho tela -->
-            <rect x="30" y="22" width="140" height="310" rx="20" ry="20"
-              fill="url(#screenGrad)" opacity="0.5"/>
-            <defs>
-              <linearGradient id="screenGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#FF6B00" stop-opacity="0.08"/>
-                <stop offset="50%" stop-color="#000" stop-opacity="0"/>
-                <stop offset="100%" stop-color="#1B4F8A" stop-opacity="0.05"/>
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-        <div class="color-badge-display" id="color-badge">Selecione uma cor</div>
+      <!-- PAINEL IMAGEM -->
+      <div class="cfg-img-panel">
+        <div class="cfg-img-glow" id="cfgGlow"></div>
+        <img class="cfg-img" id="cfgImg" src="" alt="iPhone selecionado"/>
+        <div class="cfg-model-label" id="cfgModelLabel">Selecione um modelo</div>
       </div>
 
-      <!-- CONFIG PANEL -->
-      <div class="config-panel">
-        <div class="config-header">
-          <h2>iPhone 17 Pro Max</h2>
-          <p>Titânio · Chip A19 Pro · Câmera Fusion 48MP · 5G</p>
+      <!-- PAINEL CONFIG -->
+      <div class="cfg-panel">
+        <div class="cfg-header">
+          <div class="cfg-line-badge" id="cfgLineBadge">— Linha —</div>
+          <h2 id="cfgTitle">Personalize seu iPhone</h2>
+          <p id="cfgDesc">Escolha a cor desejada e envie sua solicitação.</p>
         </div>
 
-        <!-- COR -->
-        <div class="config-group">
-          <label>Cor</label>
-          <div class="color-options">
-            <button class="color-btn" data-color="laranja" onclick="selectColor('laranja')">
-              <span class="color-dot dot-laranja"></span>
-              Laranja
-            </button>
-            <button class="color-btn" data-color="azul" onclick="selectColor('azul')">
-              <span class="color-dot dot-azul"></span>
-              Azul
-            </button>
-            <button class="color-btn" data-color="branco" onclick="selectColor('branco')">
-              <span class="color-dot dot-branco"></span>
-              Branco
-            </button>
+        <div class="cfg-group">
+          <label>Cor disponível</label>
+          <div class="color-grid" id="colorGrid">
+            <!-- injetado via JS -->
           </div>
         </div>
 
-        <!-- ARMAZENAMENTO -->
-        <div class="config-group">
-          <label>Armazenamento</label>
-          <div class="storage-options">
-            <button class="storage-btn" data-storage="256" onclick="selectStorage('256')">
-              <div class="storage-gb">256 GB</div>
-              <div class="storage-price" id="price-256">Selecione uma cor</div>
-            </button>
-            <button class="storage-btn" data-storage="512" onclick="selectStorage('512')">
-              <div class="storage-gb">512 GB</div>
-              <div class="storage-price" id="price-512">Selecione uma cor</div>
-            </button>
+        <div class="price-box">
+          <div class="price-box-left">
+            <div class="price-box-tag">💬 Negociação direta</div>
+            <div class="price-box-val">Valor a combinar</div>
+            <div class="price-box-sub">Entre em contato · melhor preço garantido<br/>Parcelamento e condições especiais disponíveis</div>
+          </div>
+          <div class="price-box-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
           </div>
         </div>
 
-        <!-- PREÇO -->
-        <div class="price-display">
-          <div>
-            <div class="price-label">Preço à vista</div>
-            <div class="price-value" id="final-price">—</div>
-            <div class="price-installment" id="installment-text">Escolha cor e armazenamento</div>
-          </div>
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 8v4l3 3"/>
-          </svg>
-        </div>
-
-        <!-- BOTÃO WHATSAPP -->
-        <button class="whatsapp-btn" id="whatsapp-btn" onclick="sendToWhatsApp()">
+        <button class="wa-cta" id="waBtn" onclick="sendWA()" disabled>
           <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Pedir pelo WhatsApp
+          Quero este — Falar no WhatsApp
         </button>
 
-        <p class="config-disclaimer">
-          Estoque limitado · Entrega combinada diretamente comigo 🤝
+        <p class="cfg-note">
+          📦 Estoque verificado em tempo real · 🔒 Compra segura e garantida<br/>
+          ✅ Resposta em minutos no WhatsApp
         </p>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<hr class="divider" />
-
-<!-- GALERIA -->
-<section>
-  <div class="section-label">Galeria</div>
-  <h2 class="section-title">Veja em detalhes</h2>
-  <p class="section-sub">Design em titânio com acabamento premium em cada ângulo.</p>
-  <div class="gallery-grid" id="gallery">
-    <!-- imagens inseridas via JS -->
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- CORES -->
-<section>
-  <div class="section-label">Acabamentos</div>
-  <h2 class="section-title">Três cores exclusivas</h2>
-  <p class="section-sub">Cada cor tem sua identidade. Todas com acabamento em titânio aeroespacial.</p>
-  <div class="colors-grid">
-    <div class="color-card" onclick="selectColor('laranja'); document.getElementById('configurador').scrollIntoView({behavior:'smooth'})">
-      <div class="color-swatch swatch-laranja"></div>
-      <div class="color-name">Laranja</div>
-      <div class="color-tagline">Ousado e vibrante</div>
+<!-- POR QUE JIMPORTS -->
+<section id="porque">
+<div class="why-section">
+  <div class="why-inner">
+    <div class="sec-header reveal">
+      <div class="sec-label">Diferenciais</div>
+      <h2 class="sec-title">Por que escolher a JDImports?</h2>
+      <p class="sec-sub">Comprometimento, transparência e o melhor iPhone pelo melhor preço.</p>
     </div>
-    <div class="color-card" onclick="selectColor('azul'); document.getElementById('configurador').scrollIntoView({behavior:'smooth'})">
-      <div class="color-swatch swatch-azul"></div>
-      <div class="color-name">Azul</div>
-      <div class="color-tagline">Elegância profunda</div>
-    </div>
-    <div class="color-card" onclick="selectColor('branco'); document.getElementById('configurador').scrollIntoView({behavior:'smooth'})">
-      <div class="color-swatch swatch-branco"></div>
-      <div class="color-name">Branco</div>
-      <div class="color-tagline">Sofisticação pura</div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- SPECS -->
-<section>
-  <div class="section-label">Especificações</div>
-  <h2 class="section-title">Feito para ir além</h2>
-  <p class="section-sub">Tecnologia de ponta em cada detalhe.</p>
-  <div class="specs-grid">
-    <div class="spec-card">
-      <div class="spec-icon">
-        <svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="why-t">100% Original</div>
+        <div class="why-d">Todos os aparelhos são originais Apple com procedência verificada.</div>
       </div>
-      <div class="spec-title">Chip A19 Pro</div>
-      <div class="spec-desc">O processador mais potente do mundo em um smartphone. Machine Learning nativa.</div>
-    </div>
-    <div class="spec-card">
-      <div class="spec-icon">
-        <svg viewBox="0 0 24 24"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><circle cx="12" cy="13" r="3"/></svg>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM1 10h22"/></svg></div>
+        <div class="why-t">Parcelamento Flexível</div>
+        <div class="why-d">Condições especiais de parcelamento. Combine a melhor forma de pagamento.</div>
       </div>
-      <div class="spec-title">Câmera Fusion 48MP</div>
-      <div class="spec-desc">Sistema de câmera Pro com zoom óptico 5x e gravação em 4K ProRes.</div>
-    </div>
-    <div class="spec-card">
-      <div class="spec-icon">
-        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div class="why-t">Resposta Rápida</div>
+        <div class="why-d">Atendimento ágil pelo WhatsApp. Tire dúvidas e feche negócio em minutos.</div>
       </div>
-      <div class="spec-title">Tela ProMotion 6.9"</div>
-      <div class="spec-desc">Super Retina XDR com ProMotion 120Hz e brilho de até 2.000 nits.</div>
-    </div>
-    <div class="spec-card">
-      <div class="spec-icon">
-        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div class="why-t">Entrega Nacional</div>
+        <div class="why-d">Enviamos para qualquer cidade do Brasil com rastreamento completo.</div>
       </div>
-      <div class="spec-title">Bateria todo-dia</div>
-      <div class="spec-desc">Autonomia de até 33h de reprodução de vídeo. Carregamento MagSafe.</div>
-    </div>
-    <div class="spec-card">
-      <div class="spec-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="why-t">Atendimento Humano</div>
+        <div class="why-d">Fale diretamente com o vendedor. Sem robôs, sem burocracia.</div>
       </div>
-      <div class="spec-title">Titânio Grau 5</div>
-      <div class="spec-desc">Estrutura em titânio aeroespacial, o mais resistente já usado num iPhone.</div>
-    </div>
-    <div class="spec-card">
-      <div class="spec-icon">
-        <svg viewBox="0 0 24 24"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16"/><path d="M16 6v16"/></svg>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <div class="why-t">Suporte Pós-venda</div>
+        <div class="why-d">Continuamos à disposição mesmo depois da compra realizada.</div>
       </div>
-      <div class="spec-title">5G Ultra-rápido</div>
-      <div class="spec-desc">Conectividade 5G com Wi-Fi 7 para velocidades incríveis.</div>
     </div>
   </div>
+</div>
 </section>
 
-<hr class="divider" />
+<hr/>
 
 <!-- FOOTER -->
 <footer>
-  <p>📱 <strong>iPhone 17 Pro Max</strong> — Loja Exclusiva</p>
-  <p style="margin-top:8px;">Dúvidas? Fale direto: <a href="tel:+5533987630763">+55 (33) 98763-0763</a> ou pelo <a href="https://wa.me/5533987630763" target="_blank">WhatsApp</a></p>
-  <p style="margin-top:16px; font-size:11px; color:#555;">© 2025 · Todos os direitos reservados · Desenvolvido por Davi Santana</p>
+  <div class="footer-brand"><span style="-webkit-text-fill-color:var(--orange);color:var(--orange)">JD</span><span style="-webkit-text-fill-color:#F5F5F7;color:#F5F5F7">Imports</span></div>
+  <p>iPhones originais · Atendimento personalizado</p>
+  <p>📞 <a href="tel:+5533987630763">+55 (33) 98763-0763</a> &nbsp;·&nbsp; <a href="https://wa.me/5533987630763" target="_blank">WhatsApp</a></p>
+  <p style="margin-top:14px;font-size:11px;color:#333">© 2025 JDImports · Todos os direitos reservados · Desenvolvido por Davi Santana</p>
 </footer>
 
-<!-- FAB WhatsApp -->
-<a class="fab" href="https://wa.me/5533987630763?text=Olá!%20Tenho%20interesse%20no%20iPhone%2017%20Pro%20Max." target="_blank" title="Falar no WhatsApp">
+<!-- FAB -->
+<a class="fab" href="https://wa.me/5533987630763?text=Ol%C3%A1%20JDImports!%20Vim%20pelo%20cat%C3%A1logo%20e%20tenho%20interesse%20em%20um%20iPhone." target="_blank" title="Falar no WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<!-- TOAST -->
-<div class="toast" id="toast">✅ Abrindo WhatsApp...</div>
+<div class="toast" id="toast"></div>
 
 <script>
-  // ── STATE ──
-  const state = { color: null, storage: null };
+// ── IMAGENS BASE64 ──
+const IMGS = {
+  iphone14:       "iphone14.png",
+  iphone14promax: "iphone14promax.png",
+  iphone15:       "iphone15.png",
+  iphone15promax: "iphone15promax.png",
+  iphone16:       "iphone16.png",
+  iphone16promax: "iphone16promax.png",
+  iphone17:       "iphone17.png",
+  iphone17promax: "iphone17promax.png"
+};
 
-  // ── PRICE TABLE ──
-  const prices = {
-    laranja: { '256': 6500, '512': 7000 },
-    azul:    { '256': 6500, '512': 7000 },
-    branco:  { '256': 7000, '512': 7300 },
-  };
+// ── DADOS DE CATÁLOGO ──
+const CATALOG = {
+  promax: [
+    {
+      id: 'iphone14promax', name: 'iPhone 14 Pro Max', img: 'iphone14promax',
+      chip: 'Chip A15 Bionic · 6.7" ProMotion · 48MP',
+      colors: [
+        {name:'Preto Espacial', hex:'#1C1C1E', border:'#444'},
+        {name:'Prateado',       hex:'#E8E4DC', border:'#aaa'},
+        {name:'Dourado',        hex:'#C9A96E', border:'#a87f3f'},
+        {name:'Roxo Escuro',    hex:'#4A3658', border:'#7a5a90'},
+      ]
+    },
+    {
+      id: 'iphone15promax', name: 'iPhone 15 Pro Max', img: 'iphone15promax',
+      chip: 'Chip A17 Pro · 6.7" ProMotion · 48MP · USB-C',
+      colors: [
+        {name:'Titânio Preto',   hex:'#2D2D2D', border:'#555'},
+        {name:'Titânio Branco',  hex:'#E0DDD6', border:'#aaa'},
+        {name:'Titânio Azul',    hex:'#4A6B8A', border:'#6a9ac0'},
+        {name:'Titânio Natural', hex:'#C4A882', border:'#9e8060'},
+      ]
+    },
+    {
+      id: 'iphone16promax', name: 'iPhone 16 Pro Max', img: 'iphone16promax',
+      chip: 'Chip A18 Pro · 6.9" ProMotion · 48MP · Camera Control',
+      colors: [
+        {name:'Titânio Preto',   hex:'#2D2D2D', border:'#555'},
+        {name:'Titânio Branco',  hex:'#F0EDE8', border:'#bbb'},
+        {name:'Titânio Natural', hex:'#C4A882', border:'#9e8060'},
+        {name:'Titânio Desert',  hex:'#B09060', border:'#8a6e40'},
+      ]
+    },
+    {
+      id: 'iphone17promax', name: 'iPhone 17 Pro Max', img: 'iphone17promax',
+      chip: 'Chip A19 Pro · 6.9" ProMotion · 48MP · Unibody Alumínio',
+      colors: [
+        {name:'Silver',        hex:'#D8D4CC', border:'#aaa'},
+        {name:'Cosmic Orange', hex:'#FF6B00', border:'#FF8C38'},
+        {name:'Deep Blue',     hex:'#1B4F8A', border:'#4A90D9'},
+      ]
+    }
+  ],
+  normal: [
+    {
+      id: 'iphone14', name: 'iPhone 14', img: 'iphone14',
+      chip: 'Chip A15 Bionic · 6.1" Super Retina · 12MP',
+      colors: [
+        {name:'Meia-Noite',   hex:'#1C1C1E', border:'#444'},
+        {name:'Estelar',      hex:'#F5F0E8', border:'#ccc'},
+        {name:'(PRODUCT)RED', hex:'#CC0000', border:'#ff3030'},
+        {name:'Azul',         hex:'#4A7FA5', border:'#6aafdc'},
+        {name:'Roxo',         hex:'#7B5EA7', border:'#a87fd4'},
+        {name:'Amarelo',      hex:'#F7DC6F', border:'#c4a800'},
+      ]
+    },
+    {
+      id: 'iphone15', name: 'iPhone 15', img: 'iphone15',
+      chip: 'Chip A16 Bionic · 6.1" Super Retina · 48MP · USB-C',
+      colors: [
+        {name:'Preto',    hex:'#2D2D2D', border:'#555'},
+        {name:'Azul',     hex:'#A8C5DA', border:'#7ab0cc'},
+        {name:'Verde',    hex:'#B8D4B0', border:'#88b080'},
+        {name:'Amarelo',  hex:'#F5E6A0', border:'#c4b800'},
+        {name:'Rosa',     hex:'#F4C0C0', border:'#d88080'},
+      ]
+    },
+    {
+      id: 'iphone16', name: 'iPhone 16', img: 'iphone16',
+      chip: 'Chip A18 · 6.1" Super Retina · 48MP · Camera Control',
+      colors: [
+        {name:'Preto',           hex:'#2D2D2D', border:'#555'},
+        {name:'Branco',          hex:'#F5F0E8', border:'#ccc'},
+        {name:'Rosa',            hex:'#F4A0B0', border:'#e07090'},
+        {name:'Verde-azulado',   hex:'#60A8A8', border:'#3a8888'},
+        {name:'Ultramarino',     hex:'#2850A8', border:'#4070d8'},
+      ]
+    },
+    {
+      id: 'iphone17', name: 'iPhone 17', img: 'iphone17',
+      chip: 'Chip A19 · 6.3" Super Retina · 48MP Dual Fusion · USB-C',
+      colors: [
+        {name:'Preto',    hex:'#2D2D2D', border:'#555'},
+        {name:'Branco',   hex:'#F5F0E8', border:'#ccc'},
+        {name:'Lavanda',  hex:'#C0B0D8', border:'#9080b8'},
+        {name:'Mist Blue',hex:'#90B8D0', border:'#6090b0'},
+        {name:'Sage',     hex:'#A0B898', border:'#709070'},
+      ]
+    }
+  ]
+};
 
-  const colorLabels = {
-    laranja: 'Laranja Titânio',
-    azul: 'Azul Titânio',
-    branco: 'Branco Titânio',
-  };
+// ── STATE ──
+let state = { line: null, model: null, color: null };
 
-  // ── GALLERY IMAGES (usando as fotos enviadas) ──
-  // As imagens são usadas como base64 ou via objeto URL se disponível
-  // Inserimos placeholder SVGs com as cores para fins de galeria
-  function buildGallery() {
-    const gallery = document.getElementById('gallery');
-    const galleryItems = [
-      { label: 'Quatro cores', angle: 'Família completa', colorBg: '#1A1A1A' },
-      { label: 'Laranja', angle: 'Vista frontal e traseira', colorBg: '#2A1200' },
-      { label: 'Laranja', angle: 'Tela On', colorBg: '#1A0A00' },
-      { label: 'Câmera', angle: 'Detalhe do módulo', colorBg: '#1A0D00' },
-      { label: 'Perfil', angle: 'Vista lateral', colorBg: '#180D00' },
-      { label: 'Pro', angle: 'Design inovador', colorBg: '#0D0D0D' },
-    ];
+// ── FUNÇÕES DE NAVEGAÇÃO ──
+function scrollTo(id) {
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
 
-    gallery.innerHTML = galleryItems.map((item, i) => `
-      <div class="gallery-item" onclick="document.getElementById('configurador').scrollIntoView({behavior:'smooth'})">
-        <svg viewBox="0 0 160 280" xmlns="http://www.w3.org/2000/svg" style="width:70%;opacity:0.7;">
-          <rect x="10" y="5" width="140" height="270" rx="22" fill="${item.colorBg}" stroke="rgba(255,107,0,0.25)" stroke-width="1"/>
-          <rect x="18" y="16" width="124" height="236" rx="18" fill="#080808"/>
-          <rect x="55" y="20" width="50" height="10" rx="5" fill="#000"/>
-          <text x="80" y="150" font-size="11" text-anchor="middle" fill="rgba(255,107,0,0.5)" font-family="Inter,sans-serif">${item.label}</text>
-          <text x="80" y="168" font-size="8" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-family="Inter,sans-serif">${item.angle}</text>
-        </svg>
+function setLineAndScroll(line) {
+  setLine(line);
+  setTimeout(() => document.getElementById('catalogo').scrollIntoView({behavior:'smooth'}), 50);
+}
+
+// ── SELEÇÃO DE LINHA ──
+function setLine(line) {
+  state.line = line;
+  state.model = null;
+  state.color = null;
+
+  document.getElementById('tab-promax').classList.toggle('active', line === 'promax');
+  document.getElementById('tab-normal').classList.toggle('active', line === 'normal');
+
+  const titleEl = document.getElementById('catalogTitle');
+  const subEl = document.getElementById('catalogSub');
+  if (line === 'promax') {
+    titleEl.textContent = 'Linha Pro Max';
+    subEl.textContent = 'Os modelos mais avançados da Apple. Câmeras pro, tela maior e desempenho máximo.';
+  } else {
+    titleEl.textContent = 'Linha Padrão';
+    subEl.textContent = 'iPhone do jeito certo: design premium, câmeras incríveis e autonomia de dia inteiro.';
+  }
+
+  renderModels();
+  document.getElementById('configurator').classList.remove('visible');
+}
+
+// ── RENDERIZAR CARDS DE MODELO ──
+function renderModels() {
+  const grid = document.getElementById('modelsGrid');
+  const models = CATALOG[state.line];
+  grid.innerHTML = models.map(m => `
+    <div class="model-card reveal" id="mc-${m.id}" onclick="selectModel('${m.id}')">
+      <div class="model-img-wrap">
+        <img class="model-img" src="${IMGS[m.img]}" alt="${m.name}" loading="lazy"/>
       </div>
-    `).join('');
+      <div class="model-info">
+        <div class="model-name">${m.name}</div>
+        <div class="model-desc">${m.chip}</div>
+        <div class="model-colors-preview">
+          ${m.colors.map(c => `<span class="dot-preview" style="background:${c.hex};border-color:${c.border}" title="${c.name}"></span>`).join('')}
+        </div>
+        <button class="model-select-btn">Selecionar modelo →</button>
+      </div>
+    </div>
+  `).join('');
+
+  // Ativar reveal
+  setTimeout(() => {
+    grid.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }, 60);
+}
+
+// ── SELECIONAR MODELO ──
+function selectModel(id) {
+  state.model = id;
+  state.color = null;
+
+  // Atualizar cards
+  document.querySelectorAll('.model-card').forEach(c => c.classList.remove('selected'));
+  const card = document.getElementById('mc-' + id);
+  if (card) card.classList.add('selected');
+
+  const models = CATALOG[state.line];
+  const m = models.find(x => x.id === id);
+  if (!m) return;
+
+  // Atualizar configurador
+  const cfg = document.getElementById('configurator');
+  cfg.classList.add('visible');
+
+  document.getElementById('cfgLineBadge').textContent = state.line === 'promax' ? '🏆 Linha Pro Max' : '📱 Linha Padrão';
+  document.getElementById('cfgTitle').textContent = m.name;
+  document.getElementById('cfgDesc').textContent = m.chip;
+  document.getElementById('cfgModelLabel').textContent = m.name;
+  document.getElementById('cfgImg').src = IMGS[m.img];
+
+  // Glow color baseado na linha
+  document.getElementById('cfgGlow').style.background = state.line === 'promax' ? 'var(--orange)' : '#4A90D9';
+
+  // Renderizar cores
+  const colorGrid = document.getElementById('colorGrid');
+  colorGrid.innerHTML = m.colors.map(c => `
+    <button class="color-opt" data-color="${c.name}" onclick="selectColor('${c.name}', '${c.hex}')" style="">
+      <span class="cdot" style="background:${c.hex};border-color:${c.border}"></span>
+      ${c.name}
+    </button>
+  `).join('');
+
+  document.getElementById('waBtn').disabled = true;
+
+  // Scroll suave até o configurador
+  setTimeout(() => cfg.scrollIntoView({behavior:'smooth', block:'center'}), 100);
+}
+
+// ── SELECIONAR COR ──
+function selectColor(colorName, hex) {
+  state.color = colorName;
+
+  document.querySelectorAll('.color-opt').forEach(b => b.classList.toggle('active', b.dataset.color === colorName));
+
+  // Atualizar glow da imagem
+  document.getElementById('cfgGlow').style.background = hex;
+
+  document.getElementById('waBtn').disabled = false;
+}
+
+// ── WHATSAPP ──
+function sendWA() {
+  if (!state.model || !state.color) {
+    showToast('⚠️ Selecione o modelo e a cor primeiro!', '#FF6B00');
+    return;
   }
+  const models = CATALOG[state.line];
+  const m = models.find(x => x.id === state.model);
+  const lineName = state.line === 'promax' ? 'Pro Max' : 'Padrão';
 
-  // ── SELECT COLOR ──
-  function selectColor(color) {
-    state.color = color;
+  const msg = encodeURIComponent(
+    `Olá JDImports! 👋\n\n` +
+    `Tenho interesse no seguinte iPhone:\n\n` +
+    `📱 Modelo: *${m.name}*\n` +
+    `🎨 Cor: *${state.color}*\n` +
+    `📦 Linha: *${lineName}*\n\n` +
+    `Poderia me informar disponibilidade e condições de pagamento?`
+  );
 
-    // Update button states
-    document.querySelectorAll('.color-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.color === color);
-    });
+  showToast('✅ Abrindo WhatsApp...', '#25D366');
+  setTimeout(() => window.open(`https://wa.me/5533987630763?text=${msg}`, '_blank'), 550);
+}
 
-    // Update badge
-    const badge = document.getElementById('color-badge');
-    badge.textContent = colorLabels[color] || color;
+function openWA(msg) {
+  window.open(`https://wa.me/5533987630763?text=${encodeURIComponent(msg)}`, '_blank');
+}
 
-    // Update panel glow
-    const panel = document.querySelector('.config-image-panel');
-    if (color === 'laranja') {
-      panel.style.setProperty('--og', 'rgba(255,107,0,0.2)');
-    } else if (color === 'azul') {
-      panel.style.setProperty('--og', 'rgba(27,79,138,0.2)');
-    } else {
-      panel.style.setProperty('--og', 'rgba(232,228,220,0.1)');
-    }
+function showToast(msg, bg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = bg || '#25D366';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
 
-    // Update storage prices
-    updateStoragePrices();
-    updateFinalPrice();
-
-    // Reset storage if branco and 256 was selected (branco 256 = R$7000, different)
-    // (Actually all combos are valid, just update display)
-    updateStorageAvailability();
-  }
-
-  // ── SELECT STORAGE ──
-  function selectStorage(storage) {
-    state.storage = storage;
-
-    document.querySelectorAll('.storage-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.storage === storage);
-    });
-
-    updateFinalPrice();
-  }
-
-  // ── UPDATE STORAGE PRICES ──
-  function updateStoragePrices() {
-    if (!state.color) return;
-    const p = prices[state.color];
-
-    const el256 = document.getElementById('price-256');
-    const el512 = document.getElementById('price-512');
-
-    el256.innerHTML = `<strong>${formatPrice(p['256'])}</strong>`;
-    el512.innerHTML = `<strong>${formatPrice(p['512'])}</strong>`;
-  }
-
-  function updateStorageAvailability() {
-    // All combos available, just refresh prices
-    document.querySelectorAll('.storage-btn').forEach(b => {
-      b.classList.remove('disabled');
-    });
-    updateStoragePrices();
-  }
-
-  // ── UPDATE FINAL PRICE ──
-  function updateFinalPrice() {
-    const priceEl = document.getElementById('final-price');
-    const installEl = document.getElementById('installment-text');
-
-    if (!state.color || !state.storage) {
-      priceEl.textContent = '—';
-      installEl.textContent = 'Escolha cor e armazenamento';
-      return;
-    }
-
-    const p = prices[state.color][state.storage];
-    priceEl.textContent = formatPrice(p);
-
-    const installment = Math.round(p / 12);
-    installEl.textContent = `ou 12x de ${formatPrice(installment)} — consulte condições`;
-  }
-
-  // ── FORMAT PRICE ──
-  function formatPrice(value) {
-    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  }
-
-  // ── SEND TO WHATSAPP ──
-  function sendToWhatsApp() {
-    if (!state.color || !state.storage) {
-      showToast('⚠️ Selecione a cor e o armazenamento primeiro!', '#FF6B00');
-      return;
-    }
-
-    const p = prices[state.color][state.storage];
-    const colorName = colorLabels[state.color];
-    const priceFormatted = formatPrice(p);
-
-    const msg = encodeURIComponent(
-      `Olá! 👋 Tenho interesse no *iPhone 17 Pro Max*:\n\n` +
-      `🎨 Cor: *${colorName}*\n` +
-      `💾 Armazenamento: *${state.storage} GB*\n` +
-      `💰 Valor: *${priceFormatted}*\n\n` +
-      `Poderia me dar mais informações sobre disponibilidade e formas de pagamento?`
-    );
-
-    showToast('✅ Abrindo WhatsApp...', '#25D366');
-    setTimeout(() => {
-      window.open(`https://wa.me/5533987630763?text=${msg}`, '_blank');
-    }, 600);
-  }
-
-  function openWhatsApp(msg) {
-    window.open(`https://wa.me/5533987630763?text=${encodeURIComponent(msg)}`, '_blank');
-  }
-
-  // ── TOAST ──
-  function showToast(msg, bg = '#25D366') {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.style.background = bg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2800);
-  }
-
-  // ── INIT ──
-  document.addEventListener('DOMContentLoaded', () => {
-    buildGallery();
-
-    // Subtle entrance animation for configurator
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.spec-card, .color-card, .gallery-item').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(el);
-    });
-  });
+// ── SCROLL REVEAL ──
+document.addEventListener('DOMContentLoaded', () => {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold: 0.08});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+});
 </script>
 
 </body>
